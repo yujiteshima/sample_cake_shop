@@ -31,3 +31,5 @@ Product.create(name:"hoge",price:100,genre:"cake",stocks:100,coment:"春の新�
 Product.create(name:"hoge",price:100,genre:"cake",stocks:100,coment:"春の新作です。",count:1)
 Product.create(name:"hoge",price:100,genre:"cake",stocks:100,coment:"春の新作です。",count:1)
 Product.create(name:"hoge",price:100,genre:"cake",stocks:100,coment:"春の新作です。",count:1)
+
+User.create(name:"Yuji Teshima", email:"yuji@cakeshop.jp", pass:"pass")

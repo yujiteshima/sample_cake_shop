@@ -11,13 +11,12 @@
 
 <script>
 export default {
-  data: {
-    email: "",
-    pass: ""
+  data() {
+    return { email: "email", pass: "pass" };
   },
   methods: {
     auth() {
-      this.$store.dispatch("auth", this.email, this.pass);
+      this.$store.dispatch("auth", { email: this.email, pass: this.pass });
     }
   }
 };

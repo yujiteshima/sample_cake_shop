@@ -4,6 +4,7 @@
       <router-link to="/" class="active">Home</router-link>|
       <router-link to="/about">About</router-link>
       <router-link to="/contact">Contact</router-link>
+      <router-link to="/user-index" style="float:right">UserIndex</router-link>
       <router-link to="/login" style="float:right">Login</router-link>
       <router-link to="/cart" style="float:right">Cart</router-link>
     </div>
