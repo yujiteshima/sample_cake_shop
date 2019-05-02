@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     <TopNav/>
+    <FlashMessage/>
+    <Modal/>
     <!-- <LoginModal v-if="modal"/> -->
     <!-- <LoginModal v-if="showModal" @close="showModal = false"> -->
     <!--
@@ -27,12 +29,16 @@
 import TopNav from "packs/components/templates/TopNav.vue";
 import BottomNav from "packs/components/templates/BottomNav.vue";
 import NoticeMessage from "packs/components/templates/NoticeMessage";
+import Modal from "packs/components/templates/Modal.vue";
+import FlashMessage from "packs/components/templates/FlashMessage.vue";
 // import LoginModal.vue from "packs/components/templates/LoginModal.vue";
 export default {
   components: {
     TopNav,
     BottomNav,
-    NoticeMessage
+    NoticeMessage,
+    Modal,
+    FlashMessage
     // LoginModal
   }
   // noticeMessage methods
