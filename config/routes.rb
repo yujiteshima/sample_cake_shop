@@ -6,10 +6,13 @@ Rails.application.routes.draw do
   get '/cart', to: 'home#index'
   get '/login', to: 'home#index'
   get '/user-index', to:'home#index'
+  get '/product/:id', to:'home#index'
+  get '/user/sign-up', to:'home#index'
   
   namespace :api, format: 'json' do
     resources :products
     resources :users
+    resources :auth
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

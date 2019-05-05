@@ -1,9 +1,12 @@
 <template>
   <div class="item-container">
     <div class="card" v-for="product in products" v-bind:key="product.id">
-      <img v-bind:src="'/images/' + product.id +'.jpg'" alt="products-item" style="width:100%">
+      <router-link :to="`/product/${product.id}`">
+        <img v-bind:src="'/images/' + product.id +'.jpg'" alt="products-item" style="width:100%">
+      </router-link>
       <h1>{{product.name}}</h1>
       <p class="price">{{product.price}}</p>
+
       <p>
         <button v-on:click="addCart(product.id)">Add to Cart</button>
       </p>
@@ -31,6 +34,12 @@ export default {
     addCart(id) {
       console.log(id);
       this.$store.dispatch("addCart", id);
+      // Do FlashMessage
+      let flashInfo = {
+        mode: "processing",
+        text: `Thank you Add Cart !!`
+      };
+      this.$store.dispatch("fM/showFlashMessage", flashInfo);
       // this.$store.dispatch("addCart", {});
     }
   }

@@ -12,7 +12,7 @@
 <script>
 export default {
   data() {
-    return { email: "email", pass: "pass" };
+    return { email: "yuji@cakeshop.jp", pass: "pass" };
   },
   methods: {
     auth() {

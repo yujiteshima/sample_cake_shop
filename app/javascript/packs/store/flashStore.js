@@ -1,4 +1,5 @@
 export default {
+  namespaced: true,
   state: {
     text: '',
     mode: 'processing',
@@ -12,7 +13,7 @@ export default {
       let unvisible = function () {
         state.visible = true
       }
-      setTimeout(unvisible, 3000);
+      setTimeout(unvisible, 5000);
     }
   },
   actions: {

@@ -32,7 +32,7 @@ export default {
         mode: "processing",
         text: "This is FlashMessge TestDayo!!"
       };
-      this.$store.dispatch("showFlashMessage", flashInfo);
+      this.$store.dispatch("fM/showFlashMessage", flashInfo);
     }
   },
   created: function() {

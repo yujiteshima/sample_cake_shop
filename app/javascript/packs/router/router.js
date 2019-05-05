@@ -40,6 +40,17 @@ export default new Router({
       path: '/user-index',
       name: 'user-index',
       component: () => import('../components/templates/UserIndex.vue')
+    },
+    {
+      path: '/product/:id',
+      name: 'product-detail',
+      component: () => import('../components/templates/ProductDetail.vue'),
+      props: route => ({ id: Number(route.params.id) }),
+    },
+    {
+      path: '/user/sign-up',
+      name: 'sign-up',
+      component: () => import('../components/templates/SignUp.vue')
     }
   ]
 })
