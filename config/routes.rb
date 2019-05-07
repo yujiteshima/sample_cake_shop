@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/contact', to: 'home#index'
   get '/cart', to: 'home#index'
   get '/login', to: 'home#index'
+  get '/logout', to: 'home#index'
   get '/user-index', to:'home#index'
   get '/product/:id', to:'home#index'
   get '/user/sign-up', to:'home#index'

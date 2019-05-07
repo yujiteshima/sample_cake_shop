@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div id="mask" v-bind:class="{hidden:modal}" @click="close"></div>
+    <!-- <div id="mask" v-bind:class="{hidden:modal}" @click="close"></div>
     <section id="modal" v-bind:class="{hidden:modal}">
       <p>こんにちは。</p>
 
       <div id="close" @click="close">閉じる</div>
-    </section>
+    </section>-->
   </div>
 </template>
 

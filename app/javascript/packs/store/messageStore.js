@@ -1,7 +1,9 @@
 export default {
+  namespaced: true,
   state: {
-    modal: true,
 
+    modal: true,
+    passMatch: ""
   },
   mutations: {
     modalOpen(state, payload) {
@@ -10,10 +12,17 @@ export default {
     },
     modalClose(state, payload) {
       state.modal = true
+    },
+    setPassMatch(state, payload) {
+      state.passMatch = true
     }
+
   },
   actions: {
     modalOpen({ commit }) {
+      commit('modalOpen')
+    },
+    loginModal({ commit }) {
       commit('modalOpen')
     },
     modalClose({ commit }) {

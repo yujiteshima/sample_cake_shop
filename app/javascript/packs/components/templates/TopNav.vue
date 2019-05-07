@@ -6,10 +6,15 @@
       <router-link to="/contact">Contact</router-link>
 
       <router-link to="/user-index" style="float:right">UserIndex</router-link>
-      <router-link to="/login" v-if="!loginUser" style="float:right">Login</router-link>
-      <router-link to="/logout" v-else style="float:right">Logout</router-link>
+      <router-link
+        to="/#"
+        @click.native="loginModal()"
+        v-if="!loginUser"
+        style="float:right"
+      >Login/SignUp</router-link>
+      <router-link to="/#" @click.native="logout()" v-else style="float:right">Logout</router-link>
       <router-link to="/cart" style="float:right">Cart</router-link>
-      <router-link to="/user/sign-up" v-if="!loginUser" style="float:right">SignUp</router-link>
+      <!-- <router-link to="/user/sign-up" v-if="!loginUser" style="float:right">SignUp</router-link> -->
     </div>
   </div>
 </template>
@@ -20,6 +25,14 @@ export default {
   computed: {
     loginUser: function() {
       return this.$store.state.uM.user;
+    }
+  },
+  methods: {
+    loginModal() {
+      this.$store.dispatch("mM/loginModal");
+    },
+    logout() {
+      this.$store.dispatch("uM/logout");
     }
   }
 };

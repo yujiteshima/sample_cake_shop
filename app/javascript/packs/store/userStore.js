@@ -1,6 +1,7 @@
 import router from "../router/router"
 
 export default {
+  namespaced: true,
   state: {
     userIndex: [],
     user: ""
@@ -35,6 +36,9 @@ export default {
       } else if (payload.mode === "error") {
         router.push('/user/sign-up')
       }
+    },
+    logout(state, payload) {
+      state.user = ""
     }
   },
   actions: {
@@ -53,6 +57,8 @@ export default {
               mode: "processing",
               text: `ログインしました。${response.name}様、お買い物をお楽しみ下さい。`
             }, { root: true })
+            // closeModal
+            commit('mM/modalClose', null, { root: true })
           } else {
             commit('fM/setMessage', {
               mode: response.mode,
@@ -98,8 +104,22 @@ export default {
           return result.json();
         }).then(response => {
           commit('signup', response)
-          commit('fM/setMessage', response, { root: true })
+          if (response.mode === "processing") {
+            commit('mM/modalClose', null, { root: true })
+          }
+          if (response.flashMessage) {
+            commit('fM/setMessage', response, { root: true })
+          } else if (response.passMatch) {
+            commit('mM/setPassMatch', response, { root: true })
+          }
         }).catch(error => console.log(error));
+    },
+    logout({ commit }, userInfo) {
+      commit('logout', userInfo)
+      commit('fM/setMessage', {
+        mode: "processing",
+        text: `ログアウトしました。またのお越しをお待ち申し上げております。`
+      }, { root: true })
     }
   }
 }

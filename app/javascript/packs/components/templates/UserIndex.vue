@@ -24,7 +24,7 @@ export default {
   },
   created: function() {
     // this.$nextTick(function() {
-    this.$store.dispatch("userIndex");
+    this.$store.dispatch("uM/userIndex");
     // });
   }
 };

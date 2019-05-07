@@ -13,25 +13,36 @@ class Api::UsersController < ApplicationController
   def create
     
     #user = User.new(name: params[:userInfo][:name], email: params[:userInfo][:email], pass: params[:userInfo][:pass1])
-    @user = User.new(name: params[:name], email: params[:email], pass: params[:pass1])
-    if @user.save
-      @newuser = User.find_by(email: params[:email]) 
-      @info = {
-        name:@user.name,
-        email:@user.email,
-        flashMessage:true,
-        mode:"processing",
-        text:"ユーザー登録が完了しました"
-      }
-    elsif
-      @info ={
-      flashMessage: true,
-      mode:"error",
-      text:@user.errors.full_messages[0]
-      }
-    end
-    render json: @info
+    if params[:pass1] === params[:pass2]
+
+      @user = User.new(name: params[:name], email: params[:email], pass: params[:pass1])
+      if @user.save
+        @newuser = User.find_by(email: params[:email]) 
+        @info = {
+          name:@user.name,
+          email:@user.email,
+          flashMessage:true,
+          mode:"processing",
+          text:"ユーザー登録が完了しました"
+        }
+      elsif
+        @info ={
+        flashMessage: true,
+        mode:"error",
+        text:@user.errors.full_messages[0]
+        }
+      end
+      render json: @info
     
+    else
+      @info = {
+        flashMessage: false,
+        passMatch: true
+      }
+      render json: @info
+    end
+  
+
     # redirect_to("/")
   end
 
