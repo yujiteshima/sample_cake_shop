@@ -51,6 +51,11 @@ export default new Router({
       path: '/user/sign-up',
       name: 'sign-up',
       component: () => import('../components/templates/SignUp.vue')
+    },
+    {
+      path: '/home2',
+      name: 'home2',
+      component: () => import('../components/templates/Home2.vue')
     }
   ]
 })

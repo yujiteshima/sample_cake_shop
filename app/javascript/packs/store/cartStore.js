@@ -57,6 +57,24 @@ export default {
   getters: {
     products(state, getters, rootState, rootGetters) {
       return rootState.pM.products
+    },
+    itemCount(state) {
+      let i = 0
+      let sum = 0
+      while (i < state.cart_items.length) {
+        sum += parseInt(state.cart_items[i].count, 10)
+        i++
+      }
+      return sum
+    },
+    sum(state) {
+      let i = 0
+      let sum = 0
+      while (i < state.cart_items.length) {
+        sum += state.cart_items[i].count * state.cart_items[i].price;
+        i++
+      }
+      return sum
     }
   },
   actions: {

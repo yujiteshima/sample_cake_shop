@@ -51,20 +51,28 @@ export default {
 
 <style scoped>
 img {
-  height: 200px;
+  height: 18rem;
 }
 .item-container {
+  width: 74%;
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 26px;
+
+  margin: 6% auto 50px;
+  /* margin-bottom: 50px; */
+  /* display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   gap: 10px;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr; */
 }
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
+  width: 15rem;
   margin: auto;
   text-align: center;
   font-family: arial;
+  object-fit: cover;
 }
 
 .price {

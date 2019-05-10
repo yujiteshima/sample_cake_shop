@@ -80,6 +80,7 @@ export default {
 
 <style lang="scss">
 body {
+  background-color: #f6f6f6;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }

@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get '/user-index', to:'home#index'
   get '/product/:id', to:'home#index'
   get '/user/sign-up', to:'home#index'
-  
+  get '/home2', to:'home#index'
+   
   namespace :api, format: 'json' do
     resources :products
     resources :users

@@ -9,6 +9,15 @@ import Vue from 'vue'
 import App from '../app.vue'
 import router from './router/router.js'
 import store from './store/store.js'
+//fontAwesome
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCoffee, faShoppingCart, faSignInAlt, faUserPlus, faHome, faInfo, faBars, faLock, faSearch, faUserCircle, faSignOutAlt, faAngleLeft, faAngleDoubleLeft, faAngleDoubleRight, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faCoffee, faShoppingCart, faSignInAlt, faUserPlus, faHome, faInfo, faBars, faLock, faSearch, faUserCircle, faSignOutAlt, faAngleLeft, faAngleDoubleLeft, faAngleDoubleRight, faAngleRight)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+//fontAwesomeここまで
 
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.body.appendChild(document.createElement('hello'))
