@@ -35,16 +35,20 @@ export default {
 
 <style scoped>
 .flash-message {
+  /* position: fixed; */
+  height: 1em;
   /* background: skyblue; */
   color: aliceblue;
   padding: 20px;
   border-radius: 4px;
-  position: absolute;
-  top: 40px;
+  top: 0px;
   left: 0;
   right: 0;
   margin: 0 auto;
   transition: 0.4s;
+  position: sticky;
+  font-size: 2em;
+  z-index: 999;
 }
 .darkblue {
   background-color: #0e6191;
@@ -61,6 +65,7 @@ export default {
   color: whitesmoke;
 }
 .hidden {
+  /* display: none; */
   transform: translate(0, -500px);
 }
 </style>

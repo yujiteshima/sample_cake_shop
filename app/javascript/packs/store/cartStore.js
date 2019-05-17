@@ -51,6 +51,9 @@ export default {
         state.cart_items.indexOf(item)
       )
       state.cart_items.splice(itemIndex, 1)
+    },
+    thanks(state) {
+      state.cart_items = []
     }
   },
 
@@ -89,6 +92,9 @@ export default {
     },
     delete({ commit }, id) {
       commit('delete', id)
+    },
+    thanks({ commit }) {
+      commit('thanks')
     }
   }
 

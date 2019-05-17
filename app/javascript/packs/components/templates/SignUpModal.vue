@@ -1,38 +1,48 @@
 <template>
   <div>
     <div id="mask" v-bind:class="{hidden:modal}" @click="close"></div>
-    <!-- ログイン -->
     <section id="modal" v-bind:class="{hidden:modal}">
       <div id="close" @click="close">
         <font-awesome-icon class="closeIcon" icon="times"/>
       </div>
-
-      <div class="main">
+      <div class="main users-new">
         <div class="container">
-          <div>
-            <h1>Login Page</h1>
+          <div class="form-heading">
+            <h1>新規ユーザー登録ページ</h1>
           </div>
-          <div class="login-form-wraper">
-            <div class="login-form">
-              <div>email:</div>
+          <div class="form users-form">
+            <div class="form-body">
+              <div>ユーザー名:</div>
               <div>
-                <input type="email" v-model="email">
+                <input v-model="name">
               </div>
-              <div>password:</div>
+              <div>メールアドレス:</div>
               <div>
-                <input type="password" v-model="pass">
+                <input v-model="email">
+              </div>
+
+              <div>パスワード:</div>
+              <div>
+                <input v-model="pass1">
+              </div>
+
+              <div>
+                パスワード確認:
+                <div class="er-msg" v-if="passMatch">パスワードが一致しません</div>
+              </div>
+              <div>
+                <input v-model="pass2">
               </div>
             </div>
+            <div class="signupBtn" v-on:click="signup">新規登録</div>
+            <div class="switch-form-button" @click="loginModal">既にアカウントをお持ちの方はこちら</div>
           </div>
-
-          <div class="loginBtn" v-on:click="auth">Login</div>
-
-          <div class="switch-form-button" @click="signUpModal()">新規アカウント登録の方はこちら</div>
         </div>
       </div>
     </section>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -44,7 +54,7 @@ export default {
     return {
       email: "yuji@cakeshop.jp",
       pass: "pass",
-      // login: true,
+      login: true,
       name: "",
       pass1: "",
       pass2: ""
@@ -52,7 +62,7 @@ export default {
   },
   computed: {
     modal() {
-      return this.$store.state.mM.loginModal;
+      return this.$store.state.mM.signModal;
     },
     passMatch() {
       return this.$store.state.mM.passMatch;
@@ -65,17 +75,17 @@ export default {
     auth() {
       this.$store.dispatch("uM/auth", { email: this.email, pass: this.pass });
     },
-    signUpModal() {
-      this.$store.dispatch("mM/signUpModal");
+    signup() {
+      this.$store.dispatch("uM/signUp", {
+        name: this.name,
+        email: this.email,
+        pass1: this.pass1,
+        pass2: this.pass2
+      });
+    },
+    loginModal() {
+      this.$store.dispatch("mM/loginModal");
     }
-    // signup() {
-    //   this.$store.dispatch("uM/signUp", {
-    //     name: this.name,
-    //     email: this.email,
-    //     pass1: this.pass1,
-    //     pass2: this.pass2
-    //   });
-    // }
     // switchForm() {
     //   if (this.login === true) {
     //     this.login = false;
@@ -87,7 +97,14 @@ export default {
 };
 </script>
 
+
+
+
 <style scoped>
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
 #mask {
   background: rgba(0, 0, 0, 0.4);
   position: fixed;
@@ -97,46 +114,7 @@ export default {
   left: 0;
   z-index: 100;
 }
-h1 {
-  font-size: 2em;
-  font-weight: bold;
-}
-input {
-  font-size: 1em;
-}
-/* .main {
-  width: 50%;
-  flex-direction: column;
-} */
-.container {
-  /* width: 50%; */
-  margin: 0 auto;
-}
-.login-form {
-  font-size: 1.2em;
-  display: grid;
-  grid-template: repeat(2, 50px) / 25% 50%;
-  gap: 10px;
-  /* justify-content: space-around;
-  flex-direction: column; */
-  /* align-items: center; */
-}
-.login-form-wraper {
-  /* margin: 0 auto; */
-}
 
-.loginBtn {
-  cursor: pointer;
-  /* width: 50%; */
-  margin-top: 2.5em;
-  font-size: 2em;
-  border-bottom: 2px solid #333;
-  /* border-radius: 10px; */
-  /* box-shadow: 0 4px 8px 0 #333; */
-}
-.loginBtn:hover {
-  color: dodgerblue;
-}
 #close {
   cursor: pointer;
   /* width: 200px;
@@ -145,11 +123,11 @@ input {
   text-align: center; */
   padding: 12px 0;
   margin: 16px auto 0;
-
   position: absolute;
   left: 91%;
   top: 0px;
 }
+
 .closeIcon {
   font-size: 50px;
 }
@@ -188,7 +166,16 @@ input {
 .login-form {
   text-align: center;
 }
-
+.signupBtn {
+  cursor: pointer;
+  margin-top: 1.5em;
+  font-size: 2em;
+  border-bottom: 2px solid #333;
+  /* border-radius: 10px; */
+}
+.signupBtn:hover {
+  color: dodgerblue;
+}
 .switch-form-button {
   cursor: pointer;
   width: 50%;
@@ -201,9 +188,31 @@ input {
 .switch-form-button:hover {
   color: aqua;
 }
-
+.main {
+  display: flex;
+  justify-content: center;
+}
+.container {
+  /* background-color: darkgreen; */
+  /* display: flex;
+  justify-content: center;
+  flex-direction: column; */
+  width: 80%;
+}
 .er-msg {
   color: crimson;
+}
+.form-body {
+  /* width: 50%; */
+  display: grid;
+  grid-template: repeat(4, 50px) / 35% 50%;
+  /* justify-content: space-around;
+  flex-direction: column;
+  align-items: flex-start; */
+  font-size: 1.2em;
+}
+input {
+  font-size: 1em;
 }
 </style>
 

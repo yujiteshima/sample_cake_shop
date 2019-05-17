@@ -5,33 +5,32 @@
     <div class="progress-container">
       <ul class="progress-list">
         <li class="progress-item">
-          <div class="progress-number num1">1</div>
+          <div class="progress-number">1</div>
           <div class="progress-label">カートの商品</div>
         </li>
-        <!-- <li class="progress-item">
+        <li class="progress-item">
           <div class="progress-number">2</div>
           <div class="progress-label">お客様情報</div>
-        </li>-->
-        <!-- <li class="progress-item">
+        </li>
+        <li class="progress-item">
           <div class="progress-number">3</div>
           <div class="progress-label">ご注文手続き</div>
-        </li>-->
+        </li>
         <li class="progress-item">
-          <div class="progress-number num2">2</div>
+          <div class="progress-number">4</div>
           <div class="progress-label">ご注文内容確認</div>
         </li>
         <li class="progress-item">
-          <div class="progress-number num3">3</div>
+          <div class="progress-number">5</div>
           <div class="progress-label">完了</div>
         </li>
       </ul>
-      <!-- <hr class="progress-hr" noshade> -->
+      <hr class="progress-hr" noshade>
     </div>
-    <div class="empty-message" v-if="cart_items.length===0">カートは空です</div>
-    <div v-else>
-      <div class="check-comment">商品の合計金額は「¥{{sum}}」です。</div>
 
-      <!-- <div class="cart-container">
+    <div class="check-comment">商品の合計金額は「¥{{sum}}」です。</div>
+
+    <!-- <div class="cart-container">
       <div class="card" v-for="item in cart_items" v-bind:key="item.id">
         <div class="delbtn" @click="itemDel(item.id)">
           <font-awesome-icon icon="times" class="times-icon"/>
@@ -51,80 +50,77 @@
         <div>残り{{item.stocks}}個</div>
         <div>小計：{{ item.count * item.price }}</div>
       </div>
-      </div>-->
-      <div class="cart-container">
-        <table class="item-list">
-          <thead>
-            <tr>
-              <th>削除</th>
-              <th colspan="3">商品内容</th>
-              <th>数量</th>
-              <th>小計</th>
-            </tr>
-          </thead>
-          <tr v-for="item in cart_items" v-bind:key="item.id">
-            <td>
-              <div class="delbtn" @click="itemDel(item.id)">
-                <font-awesome-icon icon="times" class="times-icon"/>
-              </div>
-            </td>
-            <td class="img-td">
-              <img v-bind:src="'/images/' + item.id +'.jpg'" alt="cart-item">
-            </td>
-            <td>
-              <div>{{item.name}}</div>
-            </td>
-            <td>
-              <div class="price">¥{{item.price}}</div>
-            </td>
-            <td>
-              <div>
-                <span class="command" @click="countDown(item.id)">
-                  <font-awesome-icon icon="minus"/>
-                </span>
-                {{item.count}}
-                <span class="command" @click="countUp(item.id)">
-                  <font-awesome-icon icon="plus"/>
-                </span>
-              </div>
-            </td>
-            <td>
-              <div>¥{{ item.count * item.price }}</div>
-            </td>
-          </tr>
+    </div>-->
+    <div class="cart-container">
+      <table class="item-list">
+        <thead>
           <tr>
-            <td colspan="4"></td>
-            <td colspan="2" class="check-info">送料:{{ cost }}</td>
+            <th>削除</th>
+            <th colspan="3">商品内容</th>
+            <th>数量</th>
+            <th>小計</th>
           </tr>
-          <tr>
-            <td colspan="4"></td>
-            <td colspan="2" class="check-info">
-              <div class="fiveBuy" v-if="fiveBuy">5個以上ご購入で送料無料</div>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="4"></td>
-            <td colspan="2" class="check-info">
-              合計:
-              <span class="sum">¥{{sum}}</span>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="4"></td>
-            <td colspan="2" class="check-info">
-              <router-link to="/confirmation" @click.native="loginCheck()" class="goConfirm">
-                <div class="buyBtn">レジに進む</div>
-              </router-link>
-            </td>
-          </tr>
-          <tr>
-            <td colspan="4"></td>
-            <td colspan="2" class="check-info">
-              <div class="continueBtn" @click="continueShop">お買い物を続ける</div>
-            </td>
-          </tr>
-        </table>
-      </div>
+        </thead>
+        <tr v-for="item in cart_items" v-bind:key="item.id">
+          <td>
+            <div class="delbtn" @click="itemDel(item.id)">
+              <font-awesome-icon icon="times" class="times-icon"/>
+            </div>
+          </td>
+          <td class="img-td">
+            <img v-bind:src="'/images/' + item.id +'.jpg'" alt="cart-item">
+          </td>
+          <td>
+            <div>{{item.name}}</div>
+          </td>
+          <td>
+            <div class="price">¥{{item.price}}</div>
+          </td>
+          <td>
+            <div>
+              <span class="command" @click="countDown(item.id)">
+                <font-awesome-icon icon="minus"/>
+              </span>
+              {{item.count}}
+              <span class="command" @click="countUp(item.id)">
+                <font-awesome-icon icon="plus"/>
+              </span>
+            </div>
+          </td>
+          <td>
+            <div>¥{{ item.count * item.price }}</div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4"></td>
+          <td colspan="2" class="check-info">送料:{{ cost }}</td>
+        </tr>
+        <tr>
+          <td colspan="4"></td>
+          <td colspan="2" class="check-info">
+            <div class="fiveBuy" v-if="fiveBuy">5個以上ご購入で送料無料</div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4"></td>
+          <td colspan="2" class="check-info">
+            合計:
+            <span class="sum">¥{{sum}}</span>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4"></td>
+          <td colspan="2" class="check-info">
+            <div class="buyBtn" @click="buy">レジに進む</div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4"></td>
+          <td colspan="2" class="check-info">
+            <div class="continueBtn">お買い物を続ける</div>
+          </td>
+        </tr>
+      </table>
     </div>
 
     <!-- <div>
@@ -144,9 +140,6 @@ export default {
   computed: {
     cart_items() {
       return this.$store.state.cM.cart_items;
-    },
-    user_info() {
-      return this.$store.state.uM.user;
     },
     sum() {
       let i = 0;
@@ -226,19 +219,6 @@ export default {
     },
     buy() {
       confirm("お買い上げありがとうございました");
-    },
-    loginCheck() {
-      console.log(this.user_info);
-      if (this.user_info.length == 0) {
-        this.$store.dispatch("mM/loginModal");
-        this.$router.push({ path: "/cart" });
-      } else {
-        console.log("userInfo is exist!");
-        //router.push('/user/sign-up')
-      }
-    },
-    continueShop() {
-      this.$router.go(-1);
     }
   }
 };
@@ -372,9 +352,6 @@ img {
   color: #de5d50;
   margin-left: 10px;
 }
-.goConfirm {
-  text-decoration: none;
-}
 .progress-list {
   display: flex;
   justify-content: center;
@@ -401,9 +378,6 @@ img {
   vertical-align: middle;
   border-radius: 21px;
 }
-.num1 {
-  background-color: deepskyblue;
-}
 .progress-label {
   list-style-position: outside;
   font-size: 13px;
@@ -419,11 +393,5 @@ img {
   border-width: 3px;
   color: dimgray;
   z-index: 3;
-}
-
-.empty-message {
-  font-size: 2rem;
-  color: orangered;
-  font-weight: bold;
 }
 </style>

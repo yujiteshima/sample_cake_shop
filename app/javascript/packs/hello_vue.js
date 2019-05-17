@@ -11,10 +11,10 @@ import router from './router/router.js'
 import store from './store/store.js'
 //fontAwesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCoffee, faShoppingCart, faSignInAlt, faUserPlus, faHome, faInfo, faBars, faLock, faSearch, faUserCircle, faSignOutAlt, faAngleLeft, faAngleDoubleLeft, faAngleDoubleRight, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faShoppingCart, faSignInAlt, faUserPlus, faHome, faInfo, faBars, faLock, faSearch, faUserCircle, faSignOutAlt, faAngleLeft, faAngleDoubleLeft, faAngleDoubleRight, faAngleRight, faTimes, faAngleDown, faCaretDown, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faCoffee, faShoppingCart, faSignInAlt, faUserPlus, faHome, faInfo, faBars, faLock, faSearch, faUserCircle, faSignOutAlt, faAngleLeft, faAngleDoubleLeft, faAngleDoubleRight, faAngleRight)
+library.add(faCoffee, faShoppingCart, faSignInAlt, faUserPlus, faHome, faInfo, faBars, faLock, faSearch, faUserCircle, faSignOutAlt, faAngleLeft, faAngleDoubleLeft, faAngleDoubleRight, faAngleRight, faTimes, faAngleDown, faCaretDown, faPlus, faMinus)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 //fontAwesomeここまで

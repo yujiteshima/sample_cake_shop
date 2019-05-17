@@ -1,17 +1,32 @@
 export default {
   namespaced: true,
   state: {
-
-    modal: true,
+    signModal: true,
+    loginModal: true,
+    addCartModal: true,
     passMatch: ""
   },
   mutations: {
-    modalOpen(state, payload) {
-      state.modal = false
-      console.log("modalOpen!@mutation")
+    addCartModal(state, payload) {
+      state.addCartModal = false
+    },
+    loginOpen(state, payload) {
+      if (state.signModal == false) {
+        state.signModal = true
+      }
+      state.loginModal = false
+      // console.log("modalOpen!@mutation")
+    },
+    signOpen(state, payload) {
+      if (state.loginModal == false) {
+        state.loginModal = true
+      }
+      state.signModal = false
     },
     modalClose(state, payload) {
-      state.modal = true
+      state.loginModal = true
+      state.signModal = true
+      state.addCartModal = true
     },
     setPassMatch(state, payload) {
       state.passMatch = true
@@ -22,8 +37,14 @@ export default {
     modalOpen({ commit }) {
       commit('modalOpen')
     },
+    addCartModal({ commit }) {
+      commit('addCartModal')
+    },
     loginModal({ commit }) {
-      commit('modalOpen')
+      commit('loginOpen')
+    },
+    signUpModal({ commit }) {
+      commit('signOpen')
     },
     modalClose({ commit }) {
       commit('modalClose')

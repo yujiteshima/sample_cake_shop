@@ -10,9 +10,12 @@ Rails.application.routes.draw do
   get '/product/:id', to:'home#index'
   get '/user/sign-up', to:'home#index'
   get '/home2', to:'home#index'
-   
+  get '/products', to:'home#index'
+  get '/signup', to:'home#index'
+  get '/confirmation', to: 'home#index'
   namespace :api, format: 'json' do
     resources :products
+    resources :search
     resources :users
     resources :auth
   end

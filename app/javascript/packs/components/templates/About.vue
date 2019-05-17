@@ -1,5 +1,7 @@
 <template>
   <div class="about">
+    <h1>このページはこのサイトの趣旨を説明します。</h1>
+    <h1>しかし、しばらくは様々な技術テストの為に使います</h1>
     <h1>
       This is a about page
       <font-awesome-icon icon="coffee"/>
@@ -17,9 +19,14 @@
       <font-awesome-icon icon="angle-double-right"/>
       <font-awesome-icon icon="angle-left"/>
       <font-awesome-icon icon="angle-right"/>
+      <font-awesome-icon icon="times"/>
+      <font-awesome-icon class="angleIcon" icon="caret-down"/>
     </h1>
 
     <br>
+    <router-link to="/drower-test">About</router-link>
+    <router-link to="/humberger-test">Humberger</router-link>
+    <router-link to="/signup">SignUp</router-link>
     <Search></Search>
     <button @click="all">All</button>
     <product></product>
@@ -41,6 +48,7 @@ export default {
   methods: {
     all() {
       console.log("hello all");
+      this.$store.dispatch("all");
     }
   }
 };

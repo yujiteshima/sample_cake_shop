@@ -13,7 +13,7 @@ export default {
       let unvisible = function () {
         state.visible = true
       }
-      setTimeout(unvisible, 5000);
+      setTimeout(unvisible, 3000);
     }
   },
   actions: {

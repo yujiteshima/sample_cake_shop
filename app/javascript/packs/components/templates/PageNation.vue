@@ -1,39 +1,25 @@
 <template>
   <div class="page-nation-containar" v-if="pagenationDisplay">
     <ul class="page-nation">
-      <li>
-        <span @click="paging('First')">
-          <font-awesome-icon icon="angle-double-left"/>
-        </span>
+      <li @click="paging(1)" v-bind:class="{pageCursor: preCursor}">
+        <font-awesome-icon icon="angle-double-left" v-bind:class="{pageCursor: preCursor}"/>
       </li>
-      <li>
-        <span @click="paging('Preb')">
-          <font-awesome-icon icon="angle-left"/>
-        </span>
+      <li @click="paging(currentPage-1)" v-bind:class="{pageCursor: preCursor}">
+        <font-awesome-icon icon="angle-left" v-bind:class="{pageCursor: preCursor}"/>
       </li>
       <li
-        v-for="(value, name) in pagenationData"
-        @click="paging(name)"
-        v-bind:class="name"
+        v-for="(value, index) in pagenationData"
+        @click="paging(value)"
+        v-bind:class="{Current:value == currentPage}"
       >{{value}}</li>
-      <!-- <li>2</li>
-      <li>3</li>
-      <li>...</li>
-      <li>10</li>-->
-      <li>
-        <span @click="paging('Next')">
-          <font-awesome-icon icon="angle-right"/>
-        </span>
+
+      <li @click="paging(currentPage+1)" v-bind:class="{pageCursor: nextCursor}">
+        <font-awesome-icon icon="angle-right" v-bind:class="{pageCursor: nextCursor}"/>
       </li>
-      <li>
-        <span @click="paging('Last')">
-          <font-awesome-icon icon="angle-double-right"/>
-        </span>
+      <li @click="paging(-1)" v-bind:class="{pageCursor: nextCursor}">
+        <font-awesome-icon icon="angle-double-right" v-bind:class="{pageCursor: nextCursor}"/>
       </li>
     </ul>
-    <!-- <div>totalPage:{{totalPage}}</div> -->
-    <!-- <p>{{this.hello}}</p>
-    <div>ItemCount:{{this.pagenationData.ItemCount}}</div>-->
   </div>
 </template>
 
@@ -46,71 +32,34 @@ export default {
     pagenationDisplay() {
       //return true;
       return this.$store.state.pM.paginationDisplay;
+    },
+    currentPage() {
+      return this.$store.state.pM.current;
+    },
+    lastPage() {
+      return this.$store.state.pM.lastPage;
+    },
+    preCursor() {
+      if (this.currentPage === 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    nextCursor() {
+      if (this.currentPage === this.lastPage) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
-  // data() {
-  //   return {
-  //     //
-  //     pageObject: {
-  //       First: 1,
-  //       ThreeDots: "...",
-  //       Preb: 3,
-  //       Current: 4,
-  //       Next: 5,
-  //       ThreeDots2: "...",
-  //       Last: 30
-  //     },
-  //     pagenationData: {
-  //       currentPage: 1, //apiから入れる
-  //       ItemCount: 27, //apiから入れる
-  //       perPage: 9 //apiから入れる
-  //     },
-  //     hello: this.hello
-  //     // totalPage: this.totalPage
-  //   };
-  // },
+
   methods: {
-    paging(name) {
-      console.log(name);
+    paging(page) {
+      this.$store.dispatch("paging", page);
     }
-    // First() {
-    //   console.log("First");
-    // },
-    // ThreeDots() {
-    //   console.log("ThreeDots");
-    // },
-    // Preb() {
-    //   console.log("Preb");
-    // },
-    // Current() {
-    //   console.log("Current");
-    // },
-    // Next() {
-    //   console.log("Next");
-    // },
-    // ThreeDots2() {
-    //   console.log("ThreeDots");
-    // },
-    // Last() {
-    //   console.log("Last");
-    // }
   }
-  // comuputed: {
-  //   totalPage() {
-  //     // let totalPage = "";
-  //     if (this.pagenationData.ItemCount / this.pagenationData.perPage === 0) {
-  //       let totalPage =
-  //         this.pagenationData.ItemCount / this.pagenationData.perPage;
-  //     } else {
-  //       let totalPage =
-  //         this.pagenationData.ItemCount / this.pagenationData.perPage + 1;
-  //     }
-  //     return totalPage;
-  //   }
-  // }
-  // hello() {
-  //   return "hello";
-  // }
 };
 </script>
 
@@ -124,16 +73,23 @@ export default {
   list-style: none;
 }
 .page-nation li {
+  font-size: 2em;
   display: block;
   padding: 0.5em;
-  border: solid 1px lightgray;
+  border-right: solid 1px lightgray;
+  border-left: solid 1px lightgray;
   color: mediumblue;
 }
+
 .page-nation li:hover {
   background-color: #ddd;
 }
 .Current {
   background-color: skyblue;
+}
+.pageCursor {
+  pointer-events: none;
+  color: lightgray;
 }
 </style>
 

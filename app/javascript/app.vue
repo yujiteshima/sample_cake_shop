@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <TopNav/>
-    <FlashMessage/>
+    <FlashMessage v-show="visible"/>
     <Modal/>
+    <AddCartModal/>
     <LoginModal/>
+    <SignUpModal/>
     <!-- <LoginModal v-if="modal"/> -->
     <!-- <LoginModal v-if="showModal" @close="showModal = false"> -->
     <!--
@@ -33,6 +35,8 @@ import NoticeMessage from "packs/components/templates/NoticeMessage";
 import Modal from "packs/components/templates/Modal.vue";
 import FlashMessage from "packs/components/templates/FlashMessage.vue";
 import LoginModal from "packs/components/templates/LoginModal.vue";
+import SignUpModal from "packs/components/templates/SignUpModal.vue";
+import AddCartModal from "packs/components/templates/AddCartModal.vue";
 // import LoginModal.vue from "packs/components/templates/LoginModal.vue";
 export default {
   components: {
@@ -41,8 +45,15 @@ export default {
     NoticeMessage,
     Modal,
     FlashMessage,
-    LoginModal
+    LoginModal,
+    SignUpModal,
+    AddCartModal
     // LoginModal
+  },
+  computed: {
+    visible() {
+      return !this.$store.state.fM.visible;
+    }
   }
   // noticeMessage methods
   // methods: {
@@ -82,7 +93,7 @@ export default {
 body {
   background-color: #f6f6f6;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: sans-serif, Arial, Helvetica;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
